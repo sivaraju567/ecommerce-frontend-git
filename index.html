@@ -1,13 +1,48 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Dashboard</title>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<input type="text" id="user" placeholder="Username"><br><br>
+<input type="password" id="pass" placeholder="Password"><br><br>
+
+<button onclick="login()">Login</button>
+
+<div id="dashboard" style="display:none;">
+  <h2>Welcome raju 🎉</h2>
+  <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+function login(){
+  let u = document.getElementById("user").value;
+  let p = document.getElementById("pass").value;
+
+  if(u==="admin" && p==="1234"){
+    localStorage.setItem("auth","yes");
+    showDashboard();
+  }else{
+    alert("Wrong login");
+  }
+}
+
+function showDashboard(){
+  document.getElementById("dashboard").style.display="block";
+}
+
+function logout(){
+  localStorage.removeItem("auth");
+  location.reload();
+}
+
+if(localStorage.getItem("auth")==="yes"){
+  showDashboard();
+}
+</script>
+
+</body>
 </html>
